@@ -1,0 +1,9 @@
+I just found these files in my archives. They contain basic C
+implementations of classical data structures from when I was a
+student. I'm putting them here in case they can be of intererest to
+beginning programmers.
+
+The comments in the files are in French, but the code itself (function
+names, etc.) is in English.
+
+All the code is under the WTFPL: http://sam.zoy.org/wtfpl/COPYING
