@@ -4,11 +4,11 @@
 
 #include "dsets.h"
 
-/* dsets_new -- crée une nouvelle collection d'ensembles disjoints
+/* dsets_new -- crÃ©e une nouvelle collection d'ensembles disjoints
  * de size entiers (entre 0 et size - 1).
  * Renvoie un pointeur sur cette nouvelle collection, ou NULL
- * si la création n'a pas pu se faire.
- * Complexité: O(size)
+ * si la crÃ©ation n'a pas pu se faire.
+ * ComplexitÃ©: O(size)
  */
 DSets *dsets_new(int size)
 {
@@ -18,14 +18,14 @@ DSets *dsets_new(int size)
   assert(size > 0);
   if ((tmp = (DSets *) malloc(sizeof(DSets))) == NULL) {
 #ifdef DEBUG
-    fprintf(stderr, "dsets_new: erreur d'allocation mémoire.\n");
+    fprintf(stderr, "dsets_new: erreur d'allocation mÃ©moire.\n");
 #endif
     return 0;
   }
 
   if ((tmp->father = (int *) malloc(size*sizeof(int))) == NULL) {
 #ifdef DEBUG
-    fprintf(stderr, "dsets_new: erreur d'allocation mémoire.\n");
+    fprintf(stderr, "dsets_new: erreur d'allocation mÃ©moire.\n");
 #endif
     free(tmp);
     return NULL;
@@ -33,7 +33,7 @@ DSets *dsets_new(int size)
 
   if ((tmp->rank = (int *) malloc(size*sizeof(int))) == NULL) {
 #ifdef DEBUG
-    fprintf(stderr, "dsets_new: erreur d'allocation mémoire.\n");
+    fprintf(stderr, "dsets_new: erreur d'allocation mÃ©moire.\n");
 #endif
     return NULL;
   }
@@ -47,9 +47,9 @@ DSets *dsets_new(int size)
 
 }
 
-/* dsets_free -- détruit une collection d'ensembles et libère la
- * mémoire qu'elle occupait.
- * Complexité: O(1)
+/* dsets_free -- dÃ©truit une collection d'ensembles et libÃ¨re la
+ * mÃ©moire qu'elle occupait.
+ * ComplexitÃ©: O(1)
  */
 void dsets_free(DSets *ds)
 {
@@ -59,9 +59,9 @@ void dsets_free(DSets *ds)
   free(ds);
 }
 
-/* dsets_max_size -- renvoie la taille maximale d'éléments que peut contenir
+/* dsets_max_size -- renvoie la taille maximale d'Ã©lÃ©ments que peut contenir
  * une collection.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 int dsets_max_size(DSets *ds)
 {
@@ -69,9 +69,9 @@ int dsets_max_size(DSets *ds)
   return ds->size;
 }
 
-/* dsets_make_set -- crée un nouvel ensemble ne contenant que l'élément n
+/* dsets_make_set -- crÃ©e un nouvel ensemble ne contenant que l'Ã©lÃ©ment n
  * dans la collection ds.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 void dsets_make_set(DSets *ds, int n)
 {
@@ -81,7 +81,7 @@ void dsets_make_set(DSets *ds, int n)
   ds->rank[n] = 0;
 }
 
-/* dsets_find_set -- renvoie le représentant de l'ensemble auquel n appartient
+/* dsets_find_set -- renvoie le reprÃ©sentant de l'ensemble auquel n appartient
  * dans ds.
  * Renvoie -1 si n n'est dans aucun ensemble.
  */
@@ -97,8 +97,8 @@ int dsets_find_set(DSets *ds, int n)
   return ds->father[n];
 }
 
-/* dsets_union -- réuni les ensembles contenant n1 et n2
- * Complexité: O(ln(dsets_max_size(ds)))
+/* dsets_union -- rÃ©uni les ensembles contenant n1 et n2
+ * ComplexitÃ©: O(ln(dsets_max_size(ds)))
  */
 void dsets_union(DSets *ds, int n1, int n2)
 {
@@ -122,7 +122,7 @@ void dsets_union(DSets *ds, int n1, int n2)
     ds->rank[father] += 1;
 }
 
-/* dsets_same_set -- détermine si n1 et n2 font parti du meme ensemble
+/* dsets_same_set -- dÃ©termine si n1 et n2 font parti du meme ensemble
  */
 int dsets_same_set(DSets *ds, int n1, int n2)
 {
@@ -138,7 +138,7 @@ int dsets_same_set(DSets *ds, int n1, int n2)
     return (i == j);
 }
 
-/* dsets_print -- affiche la liste des éléments de ds et de leurs pères
+/* dsets_print -- affiche la liste des Ã©lÃ©ments de ds et de leurs pÃ¨res
  */
 void dsets_print(DSets *ds)
 {
