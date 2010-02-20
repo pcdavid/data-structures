@@ -4,11 +4,11 @@
 
 #include "heap.h"
 
-/* heap_create -- crée un tas d'une taille maximale donnée, ordonné par
+/* heap_create -- crÃ©e un tas d'une taille maximale donnÃ©e, ordonnÃ© par
  * la relation rel.
- * Retourne un pointeur sur ce nouveau tas, ou NULL si la création
- * ne s'est pas bien passée.
- * Complexité: O(1)
+ * Retourne un pointeur sur ce nouveau tas, ou NULL si la crÃ©ation
+ * ne s'est pas bien passÃ©e.
+ * ComplexitÃ©: O(1)
  */
 Heap *heap_create(int max_size, relation rel)
 {
@@ -17,13 +17,13 @@ Heap *heap_create(int max_size, relation rel)
   assert((max_size > 0) && (rel != NULL));
   if ((tmp = (Heap *) malloc(sizeof(Heap))) == NULL) {
 #ifdef DEBUG
-    fprintf(stderr, "heap_create: erreur d'allocation mémoire.\n");
+    fprintf(stderr, "heap_create: erreur d'allocation mÃ©moire.\n");
 #endif
     return NULL;
   }
   if ((tmp->tab = (void **) malloc(max_size*sizeof(void *))) == NULL) {
 #ifdef DEBUG
-    fprintf(stderr, "heap_create: erreur d'allocation mémoire.\n");
+    fprintf(stderr, "heap_create: erreur d'allocation mÃ©moire.\n");
 #endif
     free (tmp);
     return NULL;
@@ -34,8 +34,8 @@ Heap *heap_create(int max_size, relation rel)
   return tmp;
 }
 
-/* heap_free -- détruit un tas et libére la mémoire qu'il occupait.
- * Complexité: O(1);
+/* heap_free -- dÃ©truit un tas et libÃ©re la mÃ©moire qu'il occupait.
+ * ComplexitÃ©: O(1);
  */
    
 void heap_free(Heap *h)
@@ -45,9 +45,9 @@ void heap_free(Heap *h)
   free (h);
 }
 
-/* heap_size -- renvoie la taille effective du tas (ie le nombre d'éléments
+/* heap_size -- renvoie la taille effective du tas (ie le nombre d'Ã©lÃ©ments
  * qu'il contient).
- * Complexité: O(1);
+ * ComplexitÃ©: O(1);
  */
 int heap_size(Heap *h)
 {
@@ -55,9 +55,9 @@ int heap_size(Heap *h)
   return h->size;
 }
 
-/* heap_max_size -- renvoie le nombre maximum d'éléments qu'un tas peut
+/* heap_max_size -- renvoie le nombre maximum d'Ã©lÃ©ments qu'un tas peut
  * contenir.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 int heap_max_size(Heap *h)
 {
@@ -65,9 +65,9 @@ int heap_max_size(Heap *h)
   return h->max;
 }
 
-/* heap_root -- renvoie la racine du tas (ie son plus "petit" élément).
+/* heap_root -- renvoie la racine du tas (ie son plus "petit" Ã©lÃ©ment).
  * Ne modifie PAS le tas.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 void *heap_root(Heap *h)
 {
@@ -75,27 +75,27 @@ void *heap_root(Heap *h)
   return h->tab[0];
 }
 
-/* heap_shift_down (fonction interne) -- fait descendre à sa place dans
- * le tas un élément qui est trop haut.
- * Complexité: O(ln(heap_size(h)))
+/* heap_shift_down (fonction interne) -- fait descendre Ã  sa place dans
+ * le tas un Ã©lÃ©ment qui est trop haut.
+ * ComplexitÃ©: O(ln(heap_size(h)))
  */
 static void heap_shift_down(Heap *h, unsigned int i)
 {
   int next_i;
-  int max_i = heap_size(h) - 1; /* Indice à ne pas dépasser */
+  int max_i = heap_size(h) - 1; /* Indice Ã  ne pas dÃ©passer */
   void *tmp;
 
   assert((h != NULL) && (h->tab != NULL) && (i >= 0));
   if (heap_size(h) == 0)
     return;
   while ((heap_left_son(i) <= max_i) || (heap_right_son(i) <= max_i)) {
-    /* S'il y en a, détermine le plus grand des fils */
+    /* S'il y en a, dÃ©termine le plus grand des fils */
     next_i = heap_left_son(i);
     if ((heap_right_son(i) <= max_i) &&
         (h->rel(h->tab[next_i], h->tab[heap_right_son(i)])))
       next_i = heap_right_son(i);
     /* next_i pointe ici sur le plus grand du ou des fils
-     * S'il y a lieu, fait l'échange et continue, sinon sort tout de
+     * S'il y a lieu, fait l'Ã©change et continue, sinon sort tout de
      * suite.
      */
     if (h->rel(h->tab[i], h->tab[next_i])) {
@@ -108,8 +108,8 @@ static void heap_shift_down(Heap *h, unsigned int i)
   }
 }
 
-/* heap_shift_up (fonction interne) -- fait remonter à sa place dans
- * le tas un élément qui est placé trop bas.
+/* heap_shift_up (fonction interne) -- fait remonter Ã  sa place dans
+ * le tas un Ã©lÃ©ment qui est placÃ© trop bas.
  * Complexite: O(ln(heap_size(h)))
  */
 static void heap_shift_up(Heap *h, int i)
@@ -135,7 +135,7 @@ static void heap_shift_up(Heap *h, int i)
 
 /* heap_extract_root -- retire le sommet du tas et renvoie sa valeur
  * (en fait un pointeur sur son contenu).
- * Complexité: O(ln(heap_size(h)))
+ * ComplexitÃ©: O(ln(heap_size(h)))
  */
 void *heap_extract_root(Heap *h)
 {
@@ -150,9 +150,9 @@ void *heap_extract_root(Heap *h)
   return tmp;
 }
 
-/* heap_insert -- insère un nouvel élément dans le tas.
- * La valeur de retour indique si l'insertion s'est bien passée.
- * Complexité: O(ln(heap_size(h)))
+/* heap_insert -- insÃ¨re un nouvel Ã©lÃ©ment dans le tas.
+ * La valeur de retour indique si l'insertion s'est bien passÃ©e.
+ * ComplexitÃ©: O(ln(heap_size(h)))
  */
 int heap_insert(Heap *h, void *item)
 {
@@ -164,9 +164,9 @@ int heap_insert(Heap *h, void *item)
   return 1;
 }
 
-/* heap_print -- affiche le tas à l'écran. Affiche chacun des
- * éléments avec le function print_data.
- * Complexité: O(heap_size(h))
+/* heap_print -- affiche le tas Ã  l'Ã©cran. Affiche chacun des
+ * Ã©lÃ©ments avec le function print_data.
+ * ComplexitÃ©: O(heap_size(h))
  */
 void heap_print(Heap *h, void (*print_data)(void *))
 {

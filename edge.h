@@ -1,7 +1,7 @@
 #ifndef EDGE_H
 #define EDGE_H
 
-/* Les différentes couleurs possibles */
+/* Les diffÃ©rentes couleurs possibles */
 #define WHITE 0
 #define GREY  1
 #define BLACK 2
@@ -14,41 +14,41 @@ typedef struct {
   int attr;
 } Edge;
 
-/* edge_new -- crée une nouvelle arete ayant les caractéristiques
- * spécifiées.
- * Retourne son adress, ou NULL en cas d'échec.
- * Complexité: O(1)
+/* edge_new -- crÃ©e une nouvelle arete ayant les caractÃ©ristiques
+ * spÃ©cifiÃ©es.
+ * Retourne son adress, ou NULL en cas d'Ã©chec.
+ * ComplexitÃ©: O(1)
  */
 extern Edge *edge_new(int v1,int v2, float w, int attr);
 
-/* edge_free -- détruit une arete et libère la mémoire qu'elle
+/* edge_free -- dÃ©truit une arete et libÃ¨re la mÃ©moire qu'elle
  * occupait.
  * Complexite: O(1)
  */
 extern void edge_free(Edge *e);
 
 /* edge_get_weight -- retourne le poids d'une arete.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 extern float edge_get_weight(Edge *e);
 
 /* edge_set_weight -- modifie le poids d'une arete.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 extern void edge_set_weigth(Edge *e, float w);
 
 /* edge_get_attr -- retourne l'attribut d'une arete.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 extern int edge_get_attr(Edge *e);
 
 /* edge_set_attr -- modifie l'attribut d'une arete.
- * Complexité: (1)
+ * ComplexitÃ©: (1)
  */
 extern void edge_set_attr(Edge *e, int attr);
 
 /* edge_print -- affiche les informations contenues dans e.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 extern void edge_print(Edge *e);
 

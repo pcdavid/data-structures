@@ -4,10 +4,10 @@
 
 #include "graph.h"
 
-/* graph_new -- crée un nouveau graphe non orienté (vide) pouvant
+/* graph_new -- crÃ©e un nouveau graphe non orientÃ© (vide) pouvant
  * contenir au maximum size sommets.
- * Retourne l'adresse de ce nouveau graphe, ou NULL en cas d'échec.
- * Complexité: O(1)
+ * Retourne l'adresse de ce nouveau graphe, ou NULL en cas d'Ã©chec.
+ * ComplexitÃ©: O(1)
  */
 Graph *graph_new(int size)
 {
@@ -16,22 +16,22 @@ Graph *graph_new(int size)
   assert(size > 0);
   if ((tmp = (Graph *) malloc(sizeof(Graph))) == NULL) {
 #ifdef DEBUG
-    fprintf(stderr, "graph_new: erreur d'allocation mémoire.\n");
+    fprintf(stderr, "graph_new: erreur d'allocation mÃ©moire.\n");
 #endif
     return NULL;
   }
   tmp->size = size;
   if ((tmp->vertex = (Vertex *) malloc(size*sizeof(Edge *))) == NULL) {
 #ifdef DEBUG
-    fprintf(stderr, "graph_new: erreur d'allocation mémoire.\n");
+    fprintf(stderr, "graph_new: erreur d'allocation mÃ©moire.\n");
 #endif
     return NULL;
   }
   return tmp;
 }
 
-/* graph_free -- détruit un graphe et libère la mémoire qu'il occupait.
- * Complexité: O(g->size^2) 
+/* graph_free -- dÃ©truit un graphe et libÃ¨re la mÃ©moire qu'il occupait.
+ * ComplexitÃ©: O(g->size^2) 
  */
 void graph_free(Graph *g)
 {
@@ -52,9 +52,9 @@ void graph_free(Graph *g)
   free(g);
 }
 
-/* graph_empty -- détermine si un graphe est vide (ie ne contient
+/* graph_empty -- dÃ©termine si un graphe est vide (ie ne contient
  * aucun sommet).
- * Complexité: O(g->size)
+ * ComplexitÃ©: O(g->size)
  */
 int graph_empty(Graph *g)
 {
@@ -66,9 +66,9 @@ int graph_empty(Graph *g)
   return i == g->size;
 }
 
-/* graph_size -- détermine la taille (ie le nombre de sommets) d'un
+/* graph_size -- dÃ©termine la taille (ie le nombre de sommets) d'un
  * graphe.
- * Complexité: O(g->size)
+ * ComplexitÃ©: O(g->size)
  */
 int graph_size(Graph *g)
 {
@@ -80,9 +80,9 @@ int graph_size(Graph *g)
   return n;
 }
 
-/* graph_max_size -- détermine le nombre maximum de sommets qu'un
+/* graph_max_size -- dÃ©termine le nombre maximum de sommets qu'un
  * graphe peut contenir.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 int graph_max_size(Graph *g)
 {
@@ -90,9 +90,9 @@ int graph_max_size(Graph *g)
   return g->size;
 }
 
-/* graph_has_vertex -- détermine si un graphe possède un certain
+/* graph_has_vertex -- dÃ©termine si un graphe possÃ¨de un certain
  * sommet v.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 int graph_has_vertex(Graph *g, int v)
 {
@@ -100,8 +100,8 @@ int graph_has_vertex(Graph *g, int v)
   return (v >= g->size) ? 0 : (g->vertex[v] != NULL);
 }
 
-/* graph_has_edge -- détermine si un graphe a une certaine arete (v1, v2)
- * Complexité: O(1)
+/* graph_has_edge -- dÃ©termine si un graphe a une certaine arete (v1, v2)
+ * ComplexitÃ©: O(1)
  */
 int graph_has_edge(Graph *g, int v1, int v2)
 {
@@ -111,8 +111,8 @@ int graph_has_edge(Graph *g, int v1, int v2)
   return (g->vertex[v1][v2] != NULL);
 }
 
-/* graph_vertex_degree -- renvoie le degré du sommet v.
- * Complexité: O(g->size)
+/* graph_vertex_degree -- renvoie le degrÃ© du sommet v.
+ * ComplexitÃ©: O(g->size)
  */
 int graph_vertex_degree(Graph *g, int v)
 {
@@ -126,9 +126,9 @@ int graph_vertex_degree(Graph *g, int v)
   return deg;
 }
 
-/* graph_first_edge -- retourne la première arete de g,
+/* graph_first_edge -- retourne la premiÃ¨re arete de g,
  * ou NULL si g n'a pas d'arete.
- * Complexité: O(g->size)
+ * ComplexitÃ©: O(g->size)
  */
 Edge *graph_first_edge(Graph *g)
 {
@@ -150,9 +150,9 @@ Edge *graph_first_edge(Graph *g)
 }
 
 /* graph_next_edge -- retourne l'arete suivant e dans g, ou NULL
- * si e est la dernière.
+ * si e est la derniÃ¨re.
  * Les appels sucessifs ne renvoient jamais deux fois la meme arete.
- * Complexité: O(g->size)
+ * ComplexitÃ©: O(g->size)
  */
 Edge *graph_next_edge(Graph *g, Edge *e)
 {
@@ -168,13 +168,13 @@ Edge *graph_next_edge(Graph *g, Edge *e)
     i = e->v2; j = e->v1;
   }
   if (++j >= i) {               /* Diagonale ? */
-    /* Passage à la ligne suivante */
+    /* Passage Ã  la ligne suivante */
     i += 1;
     j = 0;
   }
   while ((i < g->size) && (g->vertex[i][j] == NULL)) {
     if (++j >= i) {               /* Diagonale ? */
-      /* Passage à la ligne suivante */
+      /* Passage Ã  la ligne suivante */
       i += 1;
       j = 0;
     }
@@ -185,9 +185,9 @@ Edge *graph_next_edge(Graph *g, Edge *e)
     return graph_get_edge(g, i, j);
 }
 
-/* graph_get_edge -- renvoie un pointeur sur l'arete spécifiée
+/* graph_get_edge -- renvoie un pointeur sur l'arete spÃ©cifiÃ©e
  * ou NULL si elle n'existe pas.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 Edge *graph_get_edge(Graph *g, int v1, int v2)
 {
@@ -199,10 +199,10 @@ Edge *graph_get_edge(Graph *g, int v1, int v2)
 }
 
 /* graph_add_vertex -- ajoute le sommet v au graphe g.
- * Ne fait rien si le sommet existe déjà.
+ * Ne fait rien si le sommet existe dÃ©jÃ .
  * La valeur de retour indique si l'insertion s'est bien
- * passée.
- * Complexité: O(1)
+ * passÃ©e.
+ * ComplexitÃ©: O(1)
  */
 int graph_add_vertex(Graph *g, int v)
 {
@@ -213,7 +213,7 @@ int graph_add_vertex(Graph *g, int v)
     g->vertex[v] = (Edge **) malloc(g->size*sizeof(Edge *));
     if (g->vertex[v] == NULL) {
 #ifdef DEBUG
-      fprintf(stderr, "graph_add_vertex: erreur d'allocation mémoire.\n");
+      fprintf(stderr, "graph_add_vertex: erreur d'allocation mÃ©moire.\n");
 #endif
       return 0;
     }
@@ -223,8 +223,8 @@ int graph_add_vertex(Graph *g, int v)
 
 /* graph_add_edge -- ajoute une arete reliant v1 et v2, avec le
  * poids w et l'attribut attr au graphe g.
- * La valeur de retour indique si l'opération s'est bien déroulée.
- * Complexité: O(1)
+ * La valeur de retour indique si l'opÃ©ration s'est bien dÃ©roulÃ©e.
+ * ComplexitÃ©: O(1)
  */
 int graph_add_edge(Graph *g, int v1, int v2, float w, int attr)
 {
@@ -238,7 +238,7 @@ int graph_add_edge(Graph *g, int v1, int v2, float w, int attr)
 
   if ((e = edge_new(v1, v2, w, attr)) == NULL) {
 #ifdef DEBUG
-    fprintf(stderr, "graph_add_edge: erreur d'allocation mémoire\n");
+    fprintf(stderr, "graph_add_edge: erreur d'allocation mÃ©moire\n");
 #endif
     return 0;
   }
@@ -248,9 +248,9 @@ int graph_add_edge(Graph *g, int v1, int v2, float w, int attr)
 }
 
 /* graph_remove_edge -- retire l'arete (v1, v2) du graphe g.
- * La valeur de retour indique si l'opération s'est bien passée.
+ * La valeur de retour indique si l'opÃ©ration s'est bien passÃ©e.
  * (une valeur 0 indique que l'arete n'existait pas)
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 int graph_remove_edge(Graph *g, int v1, int v2)
 {
@@ -263,8 +263,8 @@ int graph_remove_edge(Graph *g, int v1, int v2)
 }
 
 /* graph_remove_vertex -- retire le sommet v du graph g.
- * La valeur de retour indique si l'opération s'est bien passée.
- * Complexité: O(g->size)
+ * La valeur de retour indique si l'opÃ©ration s'est bien passÃ©e.
+ * ComplexitÃ©: O(g->size)
  */
 int graph_remove_vertex(Graph *g, int v)
 {
@@ -281,9 +281,9 @@ int graph_remove_vertex(Graph *g, int v)
 }
 
 
-/* graph_ugly_print -- affiche le graphe à l'écran (sous une forme
- * pas très lisible).
- * Complexité: O((g->size)^2)
+/* graph_ugly_print -- affiche le graphe Ã  l'Ã©cran (sous une forme
+ * pas trÃ¨s lisible).
+ * ComplexitÃ©: O((g->size)^2)
  */
 void graph_ugly_print(Graph *g)
 {

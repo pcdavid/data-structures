@@ -10,8 +10,8 @@ typedef struct {
 typedef struct {
   int max_size;
   int size;
-  int (*h)(void *);             /* Convertie une clé en entier */
-  int (*kequal)(void *, void*);  /* Prédicat de comparaison de clés */
+  int (*h)(void *);             /* Convertie une clÃ© en entier */
+  int (*kequal)(void *, void*);  /* PrÃ©dicat de comparaison de clÃ©s */
   SList **items;
 } HashTable;
 

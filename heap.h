@@ -10,57 +10,57 @@ typedef int (*relation)(void *, void *);
 typedef struct {
   int size;                     /* Taille effective du tas */
   int max;                      /* Taille maximum du tas */
-  relation rel;                 /* Relation d'ordre utilisée pour ordonner le tas */
-  void **tab;                   /* Les données contenues dans le tas */
+  relation rel;                 /* Relation d'ordre utilisÃ©e pour ordonner le tas */
+  void **tab;                   /* Les donnÃ©es contenues dans le tas */
 } Heap;
 
 
-/* heap_create -- crée un tas d'une taille maximale donnée, ordonné par
+/* heap_create -- crÃ©e un tas d'une taille maximale donnÃ©e, ordonnÃ© par
  * la relation rel.
- * Retourne un pointeur sur ce nouveau tas, ou NULL si la création
- * ne s'est pas bien passée.
- * Complexité: O(1)
+ * Retourne un pointeur sur ce nouveau tas, ou NULL si la crÃ©ation
+ * ne s'est pas bien passÃ©e.
+ * ComplexitÃ©: O(1)
  */
 extern Heap *heap_create(int max_size, relation rel);
 
-/* heap_free -- détruit un tas et libére la mémoire qu'il occupait.
- * Complexité: O(1);
+/* heap_free -- dÃ©truit un tas et libÃ©re la mÃ©moire qu'il occupait.
+ * ComplexitÃ©: O(1);
  */
 extern void heap_free(Heap *h);
 
-/* heap_root -- renvoie la racine du tas (ie son plus "petit" élément).
+/* heap_root -- renvoie la racine du tas (ie son plus "petit" Ã©lÃ©ment).
  * Ne modifie PAS le tas.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 extern void *heap_root(Heap *h);
 
-/* heap_size -- renvoie la taille effective du tas (ie le nombre d'éléments
+/* heap_size -- renvoie la taille effective du tas (ie le nombre d'Ã©lÃ©ments
  * qu'il contient).
- * Complexité: O(1);
+ * ComplexitÃ©: O(1);
  */
 extern int heap_size(Heap *h);
 
-/* heap_max_size -- renvoie le nombre maximum d'éléments qu'un tas peut
+/* heap_max_size -- renvoie le nombre maximum d'Ã©lÃ©ments qu'un tas peut
  * contenir.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 extern int heap_max_size(Heap *h);
 
 /* heap_extract_root -- retire le sommet du tas et renvoie sa valeur
  * (en fait un pointeur sur son contenu).
- * Complexité: O(ln(heap_size(h)))
+ * ComplexitÃ©: O(ln(heap_size(h)))
  */
 extern void *heap_extract_root(Heap *h);
 
-/* heap_insert -- insère un nouvel élément dans le tas.
- * La valeur de retour indique si l'insertion s'est bien passée.
- * Complexité: O(ln(heap_size(h)))
+/* heap_insert -- insÃ¨re un nouvel Ã©lÃ©ment dans le tas.
+ * La valeur de retour indique si l'insertion s'est bien passÃ©e.
+ * ComplexitÃ©: O(ln(heap_size(h)))
  */
 extern int heap_insert(Heap *h, void *item);
 
-/* heap_print -- affiche le tas à l'écran. Affiche chacun des
- * éléments avec le function print_data.
- * Complexité: O(heap_size(h))
+/* heap_print -- affiche le tas Ã  l'Ã©cran. Affiche chacun des
+ * Ã©lÃ©ments avec le function print_data.
+ * ComplexitÃ©: O(heap_size(h))
  */
 extern void heap_print(Heap *h, void (*print_data)(void *));
 

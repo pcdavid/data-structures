@@ -4,11 +4,11 @@
 
 #include "fifo.h"
 
-/* fifo_new -- crée une nouvelle file pouvant contenir au plus max_size
- * éléments.
+/* fifo_new -- crÃ©e une nouvelle file pouvant contenir au plus max_size
+ * Ã©lÃ©ments.
  * Retourne un pointeur sur cette file, ou NULL si l'allocation n'a pas
  * pu se faire.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 Fifo *fifo_new(int max_size)
 {
@@ -17,13 +17,13 @@ Fifo *fifo_new(int max_size)
     assert(max_size > 0);
     if ((tmp = (Fifo *) malloc(sizeof(Fifo))) == NULL) {
 #ifdef DEBUG
-        fprintf(stderr, "fifo_new: erreur d'allocation mémoire.\n");
+        fprintf(stderr, "fifo_new: erreur d'allocation mÃ©moire.\n");
 #endif
         return NULL;
     }
     if ((tmp->items = (void **) malloc((max_size+1)*sizeof(void *))) == NULL) {
 #ifdef DEBUG
-        fprintf(stderr, "fifo_new: erreur d'allocation mémoire.\n");
+        fprintf(stderr, "fifo_new: erreur d'allocation mÃ©moire.\n");
 #endif
         free(tmp);
         return NULL;
@@ -34,8 +34,8 @@ Fifo *fifo_new(int max_size)
     return tmp;
 }
 
-/* fifo_free -- détruit une file et libère la mémoire qu'elle occupait
- * Complexité: O(1)
+/* fifo_free -- dÃ©truit une file et libÃ¨re la mÃ©moire qu'elle occupait
+ * ComplexitÃ©: O(1)
  */
 void fifo_free(Fifo *fifo)
 {
@@ -44,9 +44,9 @@ void fifo_free(Fifo *fifo)
     free(fifo);
 }
 
-/* fifo_max_size -- retoune le nombre maximum d'éléments qu'une file
+/* fifo_max_size -- retoune le nombre maximum d'Ã©lÃ©ments qu'une file
  * peut contenir.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 int fifo_max_size(Fifo *fifo)
 {
@@ -55,7 +55,7 @@ int fifo_max_size(Fifo *fifo)
 }
 
 /* fifo_length -- retourne la longueur effective d'une file.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 int fifo_length(Fifo *fifo)
 {
@@ -66,8 +66,8 @@ int fifo_length(Fifo *fifo)
         return fifo->max_size - (fifo->oldest - fifo->newest);
 }
 
-/* fifo_empty -- détermine si une file est vide.
- * Complexité: O(1)
+/* fifo_empty -- dÃ©termine si une file est vide.
+ * ComplexitÃ©: O(1)
  */
 int fifo_empty(Fifo *fifo)
 {
@@ -75,9 +75,9 @@ int fifo_empty(Fifo *fifo)
     return fifo_length(fifo) == 0;
 }
 
-/* fifo_full -- détermine si une liste est pleine (ie ne peut plus
- * contenir d'éléments supplémentaires).
- * Complexité: O(1);
+/* fifo_full -- dÃ©termine si une liste est pleine (ie ne peut plus
+ * contenir d'Ã©lÃ©ments supplÃ©mentaires).
+ * ComplexitÃ©: O(1);
  */
 int fifo_full(Fifo *fifo)
 {
@@ -85,9 +85,9 @@ int fifo_full(Fifo *fifo)
     return (fifo_length(fifo) == fifo_max_size(fifo));
 }
 
-/* fifo_put -- insère un nouvel élément dans la file.
+/* fifo_put -- insÃ¨re un nouvel Ã©lÃ©ment dans la file.
  * Ne fait rien si la file est pleine.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 void fifo_put(Fifo *fifo, void *item)
 {
@@ -99,10 +99,10 @@ void fifo_put(Fifo *fifo, void *item)
     if (fifo->newest == fifo->max_size) fifo->newest = 0;
 }
 
-/* fifo_get -- retire un élément de la file et renvoie un pointeur
+/* fifo_get -- retire un Ã©lÃ©ment de la file et renvoie un pointeur
  * sur son contenu.
  * Retourne NULL si la file est vide.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 void *fifo_get(Fifo *fifo)
 {
@@ -118,9 +118,9 @@ void *fifo_get(Fifo *fifo)
     return ret;
 }
 
-/* fifo_print -- affiche une file à l'écran. Chaque élément est affiché en
- * faisant appel à print_item.
- * Complexité: O(1)
+/* fifo_print -- affiche une file Ã  l'Ã©cran. Chaque Ã©lÃ©ment est affichÃ© en
+ * faisant appel Ã  print_item.
+ * ComplexitÃ©: O(1)
  */
 void fifo_print(Fifo *fifo, void (*print_item)(void *))
 {

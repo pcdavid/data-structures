@@ -5,8 +5,8 @@
 #include "slist.h"
 
 /* slist_new  -- renvoie un pointeur sur une nouvelle list (vide)
- * ou bien NULL en cas d'erreur d'allocation mémoire.
- * Complexité: O(1)
+ * ou bien NULL en cas d'erreur d'allocation mÃ©moire.
+ * ComplexitÃ©: O(1)
  */
 SList *slist_new()
 {
@@ -15,7 +15,7 @@ SList *slist_new()
   tmp = (SList *) malloc(sizeof(SList));
   if (tmp == NULL) {
 #ifdef DEBUG
-    fprintf(stderr, "slist_new: erreur d'allocation mémoire.\n");
+    fprintf(stderr, "slist_new: erreur d'allocation mÃ©moire.\n");
 #endif
     return NULL;
   }
@@ -25,10 +25,10 @@ SList *slist_new()
   return tmp;
 }
 
-/* slist_free -- détruit la liste passée en paramètre et libère la
- * mémoire qu'elle occupait. Ne libère pas la mémoire occupée par les
- * données, mais celle occupée par la structure de liste elle-meme.
- * Complexité: O(longueur(list))
+/* slist_free -- dÃ©truit la liste passÃ©e en paramÃ¨tre et libÃ¨re la
+ * mÃ©moire qu'elle occupait. Ne libÃ¨re pas la mÃ©moire occupÃ©e par les
+ * donnÃ©es, mais celle occupÃ©e par la structure de liste elle-meme.
+ * ComplexitÃ©: O(longueur(list))
  */
 void slist_free(SList *list)
 {
@@ -43,9 +43,9 @@ void slist_free(SList *list)
   free(list);
 }
 
-/* slist_empty -- teste si une liste est vide (ie allouée mais ne
- * contenant aucun élément).
- * Complexité: O(1)
+/* slist_empty -- teste si une liste est vide (ie allouÃ©e mais ne
+ * contenant aucun Ã©lÃ©ment).
+ * ComplexitÃ©: O(1)
  */
 int slist_empty(SList *list)
 {
@@ -54,7 +54,7 @@ int slist_empty(SList *list)
 }
 
 /* slist_length -- renvoie la longueur d'une liste
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 int slist_length(SList *list)
 {
@@ -63,9 +63,9 @@ int slist_length(SList *list)
 }
 
 /* slist_index -- renvoie l'indice du noeud courant dans la
- * liste. Les noeuds sont numérotés de 1 à longueur(liste).
+ * liste. Les noeuds sont numÃ©rotÃ©s de 1 Ã  longueur(liste).
  * Renvoie 0 si la liste est vide.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 int slist_index(SList *list)
 {
@@ -74,9 +74,9 @@ int slist_index(SList *list)
 
 /* slist_current -- renvoie un pointeur sur le contenu du noeud courant
  * ou bien NULL si la liste est vide.
- * Si on a dépassé la fin de la liste (avec slist_next), renvoie
+ * Si on a dÃ©passÃ© la fin de la liste (avec slist_next), renvoie
  * aussi NULL.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 void *slist_current(SList *list)
 {
@@ -87,10 +87,10 @@ void *slist_current(SList *list)
     return list->current->item;
 }
 
-/* slist_reset -- retourne au début de la liste: positionne
+/* slist_reset -- retourne au dÃ©but de la liste: positionne
  * le noeud courant sur le premier de la liste.
  * Si la liste est vide, ne fait rien.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 void slist_reset(SList *list)
 {
@@ -101,11 +101,11 @@ void slist_reset(SList *list)
   }
 }
 
-/* slist_next -- avance d'un élément dans la liste et renvoie
- * un pointeur sur le contenu de l'élément d'arrivé.
- * Ne fait rien (et renvoie NULL) si la liste est vide où qu'on est
- * déjà en fin de liste.
- * Complextié: O(1)
+/* slist_next -- avance d'un Ã©lÃ©ment dans la liste et renvoie
+ * un pointeur sur le contenu de l'Ã©lÃ©ment d'arrivÃ©.
+ * Ne fait rien (et renvoie NULL) si la liste est vide oÃ¹ qu'on est
+ * dÃ©jÃ  en fin de liste.
+ * ComplextiÃ©: O(1)
  */
 void *slist_next(SList *list)
 {
@@ -121,11 +121,11 @@ void *slist_next(SList *list)
   }
 }
 
-/* slist_find -- Trouve le premier élément de la liste égal à item
- * (d'après le prédicat pred) et positionne le pointeur de liste dessus.
+/* slist_find -- Trouve le premier Ã©lÃ©ment de la liste Ã©gal Ã  item
+ * (d'aprÃ¨s le prÃ©dicat pred) et positionne le pointeur de liste dessus.
  * Renvoie un pointeur sur son son contenu.
- * Si l'élément n'a pas pu ^etre trouvé, renvoie NULL.
- * Complexité: O(longueur(list)*C(pred))
+ * Si l'Ã©lÃ©ment n'a pas pu ^etre trouvÃ©, renvoie NULL.
+ * ComplexitÃ©: O(longueur(list)*C(pred))
  */
 void *slist_find(SList *list, void *item, int (*pred)(void *, void *))
 {
@@ -135,17 +135,17 @@ void *slist_find(SList *list, void *item, int (*pred)(void *, void *))
   for (slist_reset(list); list->current != NULL; slist_next(list))
     if (pred(slist_current(list), item)) break;
   if (list->current != NULL)
-    return list->current->item; /* Trouvé */
+    return list->current->item; /* TrouvÃ© */
   else
-    return NULL;                /* Pas trouvé */
+    return NULL;                /* Pas trouvÃ© */
 }
 
-/* slist_insert -- insère un élément spécifié à la position courante
- * dans la liste. Les éléments qui suivent se retrouvent décalés d'un cran.
- * Le pointeur de liste est positionnée sur le nouveau noeud.
- * La valeur de retour indique si l'insertion s'est bien passée.
+/* slist_insert -- insÃ¨re un Ã©lÃ©ment spÃ©cifiÃ© Ã  la position courante
+ * dans la liste. Les Ã©lÃ©ments qui suivent se retrouvent dÃ©calÃ©s d'un cran.
+ * Le pointeur de liste est positionnÃ©e sur le nouveau noeud.
+ * La valeur de retour indique si l'insertion s'est bien passÃ©e.
  * pu se faire.
- * Complexité: O(1)
+ * ComplexitÃ©: O(1)
  */
 int slist_insert(SList *list, void *item)
 {
@@ -154,7 +154,7 @@ int slist_insert(SList *list, void *item)
   assert((list != NULL) && (item != NULL)); /* Est-ce raisonnable ? */
   if ((new = (Node *) malloc(sizeof(Node))) == NULL) {
 #ifdef DEBUG
-    fprintf(stderr, "slist_insert: erreur d'allocation mémoire\n");
+    fprintf(stderr, "slist_insert: erreur d'allocation mÃ©moire\n");
 #endif
     return 0;
   }
@@ -176,14 +176,14 @@ int slist_insert(SList *list, void *item)
   return 1;
 }
 
-/* slist_insert_sorted -- insère un élément dans la liste.
- * Cette fonction suppose que la liste est trièe selon cmp_func et
- * fait l'insertion du nouvel élément de manière à conserver cette
- * propriété.
+/* slist_insert_sorted -- insÃ¨re un Ã©lÃ©ment dans la liste.
+ * Cette fonction suppose que la liste est triÃ¨e selon cmp_func et
+ * fait l'insertion du nouvel Ã©lÃ©ment de maniÃ¨re Ã  conserver cette
+ * propriÃ©tÃ©.
  * cmp_func doit ^etre une relation d'ordre total (<= par ex.)
- * Positionne le pointeur de liste sur le nouvel élément inséré.
- * La valeur de retour indique si l'insertion s'est bien passée.
- * Complexité: O(longueur(list)*C(cmp_func))
+ * Positionne le pointeur de liste sur le nouvel Ã©lÃ©ment insÃ©rÃ©.
+ * La valeur de retour indique si l'insertion s'est bien passÃ©e.
+ * ComplexitÃ©: O(longueur(list)*C(cmp_func))
  */
 int slist_insert_sorted(SList *list, void *item, int (*cmp_func)(void *, void *))
 {
@@ -199,10 +199,10 @@ int slist_insert_sorted(SList *list, void *item, int (*cmp_func)(void *, void *)
     if (!cmp_func(slist_current(list), item)) break;
   }
   if (slist_current(list) == NULL) {
-    /* On a dépassé la fin de la liste */
+    /* On a dÃ©passÃ© la fin de la liste */
     if ((new = (Node *) malloc(sizeof(Node))) == NULL) {
 #ifdef DEBUG
-      fprintf(stderr, "slist_insert_sorted: erreur d'allocation mémoire\n");
+      fprintf(stderr, "slist_insert_sorted: erreur d'allocation mÃ©moire\n");
 #endif
       return 0;
     }
@@ -220,7 +220,7 @@ int slist_insert_sorted(SList *list, void *item, int (*cmp_func)(void *, void *)
 /* slist_remove -- supprime le noeud de la liste sur lequel on se trouve
  * Renvoie un pointeur sur le noeud que l'on vient de supprimer.
  * La valeur de retour indique si la suppression s'est faite.
- * Complexité: O(1) pour tous les noeuds sauf le dernier en O(longueur(list))
+ * ComplexitÃ©: O(1) pour tous les noeuds sauf le dernier en O(longueur(list))
  */
 int slist_remove(SList *list)
 {
@@ -238,13 +238,13 @@ int slist_remove(SList *list)
     list->current->next = node;
     list->length -= 1;
   } else if (slist_length(list) == 1) {
-    /* Liste avec un seul élément */
+    /* Liste avec un seul Ã©lÃ©ment */
     free(list->current);
     list->current = list->first = NULL;
     list->length = 0;
     list->index = 0;
   } else {
-    /* Suppression du dernier élément d'une liste qui en compte
+    /* Suppression du dernier Ã©lÃ©ment d'une liste qui en compte
      * au moins deux.
      */
     node = NULL;
@@ -263,11 +263,11 @@ int slist_remove(SList *list)
   return 1;
 }
 
-/* slist_foreach -- appelle une fonction donnée successivement sur
- * chaque élément de la liste. La fonction à appeler prend 2 paramètres:
- * un pointeur sur l'élément, et un pointeur générique (pour des données
+/* slist_foreach -- appelle une fonction donnÃ©e successivement sur
+ * chaque Ã©lÃ©ment de la liste. La fonction Ã  appeler prend 2 paramÃ¨tres:
+ * un pointeur sur l'Ã©lÃ©ment, et un pointeur gÃ©nÃ©rique (pour des donnÃ©es
  * utilisateur).
- * Complexité: O(longueur(list)*complexité(func))
+ * ComplexitÃ©: O(longueur(list)*complexitÃ©(func))
  */
 void slist_foreach(SList *list, void (*func)(void *, void *), void *data)
 {
@@ -277,9 +277,9 @@ void slist_foreach(SList *list, void (*func)(void *, void *), void *data)
 }
 
 /* slist_print -- affiche une liste sur la sortie standard sous la
- * forme: "(item1, item2, ...)". Fait appel à la fonction print_item pour
- * afficher chacun des éléments.
- * Complexité: O(longueur(list)*C(print_item))
+ * forme: "(item1, item2, ...)". Fait appel Ã  la fonction print_item pour
+ * afficher chacun des Ã©lÃ©ments.
+ * ComplexitÃ©: O(longueur(list)*C(print_item))
  */
 void slist_print(SList *list, void (*print_item)(void *))
 {
