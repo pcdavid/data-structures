@@ -1,9 +1,13 @@
-I just found these files in my archives. They contain basic C
-implementations of classical data structures from when I was a
-student. I'm putting them here in case they can be of intererest to
-beginning programmers.
+I just found these files in my archives. They contain basic C implementations of classical data structures from when I was a student. I'm putting them here in case they can be of intererest to beginning programmers.
 
-The comments in the files are in French, but the code itself (function
-names, etc.) is in English.
+The comments in the files are in French, but the code itself (function names, etc.) is in English.
+
+- dsets.[hc] := disjoint sets.
+- fifo.[hc]  := simple FIFO queue.
+- hash.[hc]  := hash table.
+- heap.[hc]  := heap.
+- slist.[hc] := simply linked list.
+- edge.[hc] and graph.[hc] := graph.
+- kruskal.c  := implements the Kruskal algorithm to find the minimum spanning tree of a graph. Uses most of the data structures.
 
 All the code is under the WTFPL: http://sam.zoy.org/wtfpl/COPYING
